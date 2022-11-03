@@ -14,6 +14,9 @@ import { result } from "./main.js";
 test.each([
     ["LmMLlLM", "L"],
     ["AaIiI", "I"]
+    ["cCTt", "Draw"]
+    ["LLLLLbB", "L"]
+    ["aAMMmm", "C" ]
 ])("match score", function(score, winner){
     const actual = result(score);
     expect(actual).toBe(winner);
