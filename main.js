@@ -1,4 +1,4 @@
-import {jest} from '@jest/globals'
+import { jest } from "@jest/globals";
 
 /* 
 👉 Write your kata here!
@@ -15,8 +15,26 @@ Return example: "M" or "Draw"
 
 //👉 Write the function your CodeWarriors will start with below here:
 
-
-
 export function result(score) {
-  return 
+  let results = {};
+  for (let i = 0; i < score.length; i++) {
+    if (/[A-Z]/.test(score[i])) {
+      const team = score[i];
+      if (typeof results[team] === "number") {
+        results[team]++;
+      } else {
+        results[team] = 0;
+      }
+    }
+  }
+
+  const askvpArray = Object.keys(results).map((key) => {
+    return { key, value: results[key] };
+  });
+  const uniqueScores = askvpArray.map((k) => k.value).filter((v, i, s) => s.indexOf(v) === i);
+  console.log({ askvpArray, uniqueScores });
+  if (uniqueScores.length == 1) {
+    return "Draw";
+  }
+  return askvpArray.sort((a, b) => b.value - a.value)[0].key;
 }
