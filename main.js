@@ -29,12 +29,11 @@ export function result(score) {
   }
 
   const askvpArray = Object.keys(results).map((key) => {
-    return { key, value: results[key] };
+    return { key, score: results[key] };
   });
-  const uniqueScores = askvpArray.map((k) => k.value).filter((v, i, s) => s.indexOf(v) === i);
-  console.log({ askvpArray, uniqueScores });
+  const uniqueScores = askvpArray.map((k) => k.score).filter((v, i, s) => s.indexOf(v) === i);
   if (uniqueScores.length == 1) {
     return "Draw";
   }
-  return askvpArray.sort((a, b) => b.value - a.value)[0].key;
+  return askvpArray.sort((a, b) => b.score - a.score)[0].key;
 }
